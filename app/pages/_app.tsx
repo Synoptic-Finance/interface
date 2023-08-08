@@ -1,6 +1,46 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import "@/styles/globals.css";
+import Header from "@/ui/header";
+import { inter, nunitoSans } from "@/utils/fonts";
+import type { AppProps } from "next/app";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+
+const LoadingComponent = () => (
+  <div className="flex justify-center items-center gap-10 m-auto w-screen min-h-screen animate-splash">
+    <Image src="/images/logo.svg" width={70} height={70} alt="logo" />
+    <span className="capitalize text-[2em] lg:text-[2.5em] font-nunitoSans">
+      synoptic finance
+    </span>
+  </div>
+);
+
+const AppContent = ({ children }: any) => {
+  return (
+    <main
+      className={`w-screen min-h-screen flex justify-start flex-col items-center bg-[#fff] overflow-hidden scroll-smooth gap-0 ${nunitoSans.variable} ${inter.variable}`}
+    >
+      <Header />
+      {children}
+    </main>
+  );
+};
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 3000);
+  }, []);
+
+  return (
+    <>
+      {isLoading ? (
+        <LoadingComponent />
+      ) : (
+        <AppContent>
+          <Component {...pageProps} />
+        </AppContent>
+      )}
+    </>
+  );
 }
