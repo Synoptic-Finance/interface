@@ -3,10 +3,13 @@ import Header from "@/ui/header";
 import { inter, nunitoSans } from "@/utils/fonts";
 import type { AppProps } from "next/app";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useCallback, useEffect, useState } from "react";
 
 const LoadingComponent = () => (
-  <div className="flex justify-center items-center gap-10 m-auto w-screen min-h-screen animate-splash">
+  <div
+    className={`flex justify-center items-center gap-10 m-auto w-screen min-h-screen animate-splash ${nunitoSans.variable}`}
+  >
     <Image src="/images/logo.svg" width={70} height={70} alt="logo" />
     <span className="capitalize text-[2em] lg:text-[2.5em] font-nunitoSans">
       synoptic finance
@@ -26,11 +29,7 @@ const AppContent = ({ children }: any) => {
 };
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 3000);
-  }, []);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { CTAGreen } from "@/components/button";
+import { CTAGreen, SwitchButton } from "@/components/button";
 import Image from "next/image";
 import { FiChevronRight } from "react-icons/fi";
 import { VscGlobe } from "react-icons/vsc";
@@ -13,6 +13,7 @@ export default function Header() {
         </span>
       </div>
       <div className="flex justify-center items-center gap-3 lg:gap-5">
+        <SwitchButton />
         <button className="btn btn-sm btn-ghost px-1 py-1 text-[#404040] flex justify-center items-center gap-1 uppercase text-[1em]">
           <VscGlobe />
           <span>en</span>
